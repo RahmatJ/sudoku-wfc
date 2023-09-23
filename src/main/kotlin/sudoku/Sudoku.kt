@@ -1,27 +1,20 @@
 package sudoku
 
-class Sudoku {
-    private val BOARD_SIZE = 9
-    private var board = Array(BOARD_SIZE) { Array(BOARD_SIZE) { 0 } }
-    private var possibilityBoard = Array(BOARD_SIZE) { Array(BOARD_SIZE) { mutableListOf<Int>() } }
+import board.Board
 
-    data class Region(val minX: Int, val minY: Int)
-    data class Point(val x: Int, val y: Int)
+class Sudoku {
+    private var board = Array(Board.BOARD_SIZE) { Array(Board.BOARD_SIZE) { 0 } }
+    private var possibilityBoard = Array(Board.BOARD_SIZE) { Array(Board.BOARD_SIZE) { Cell() } }
 
     init {
         initiatePossibilityBoard()
     }
 
     private fun initiatePossibilityBoard() = run {
-        possibilityBoard.forEachIndexed { i, data ->
-            data.forEachIndexed { j, _ ->
-                val arrayData = mutableListOf<Int>()
-                for (element in 1..9) {
-                    arrayData.add(element)
-                }
-                possibilityBoard[i][j] = arrayData
+        for (y in 1 until Board.BOARD_SIZE) {
+            for (x in 1 until Board.BOARD_SIZE) {
+                possibilityBoard[y][x] = Cell(x, y)
             }
-
         }
     }
 
@@ -29,10 +22,15 @@ class Sudoku {
         return this.board
     }
 
+    fun getCell(x: Int, y: Int): Cell {
+        return possibilityBoard[y][x]
+    }
+
     private fun collapseVertical(value: Int, x: Int, y: Int) {
         possibilityBoard.forEachIndexed() { i, data ->
             if (i != y) {
-                data[x].remove(value)
+                println("Collapse Vertical: x: $x, y$i")
+                data[x].removePossibility(value)
             }
         }
     }
@@ -40,7 +38,7 @@ class Sudoku {
     private fun collapseHorizontal(value: Int, x: Int, y: Int) {
         possibilityBoard[y].forEachIndexed() { i, data ->
             if (i != x) {
-                data.remove(value)
+                data.removePossibility(value)
             }
         }
     }
@@ -62,35 +60,34 @@ class Sudoku {
             for (j in region.minX..region.minX + 2) {
                 if (i != y && j != x) {
                     println("Deleting $value: x=$j, y=$i. Current Center: x=$x,y=$y")
-                    possibilityBoard[i][j].remove(value)
+                    possibilityBoard[i][j].removePossibility(value)
                 }
             }
         }
     }
 
-    fun collapse(value: Int, i: Int, j: Int) {
-        possibilityBoard[i][j].removeIf { data -> data != value }
+    fun collapse(value: Int, x: Int, y: Int) {
+        println("Collapsing: $value from x: $x, y: $y")
+        possibilityBoard[y][x].removeExceptValue(value)
+        println(possibilityBoard[y][x].possibilityToString())
 //        i = y
 //        j = x
 //        collapse all possibilityBoard with same element in vertical, horizontal and in 3x3 manner
-        collapseVertical(value, x = j, y = i)
-        collapseHorizontal(value, x = j, y = i)
-        collapseRegion(value, x = j, y = i)
+        collapseVertical(value, x = x, y = y)
+        collapseHorizontal(value, x = x, y = y)
+        collapseRegion(value, x = x, y = y)
     }
 
     fun resetPossibilityBoard() {
-        possibilityBoard = Array(BOARD_SIZE) { Array(BOARD_SIZE) { mutableListOf<Int>() } }
+        possibilityBoard = Array(Board.BOARD_SIZE) { Array(Board.BOARD_SIZE) { Cell() } }
     }
 
-    fun printPosiibility() {
+    fun printPossibility() {
         var strData = ""
         possibilityBoard.forEach { row ->
-            strData += "|"
+            strData += "| "
             row.forEach { column ->
-                column.forEach() {
-                    strData += " $it"
-                }
-                strData += " |"
+                strData += "${column.possibilityToString()}|"
             }
             strData += "\n"
         }
@@ -108,4 +105,6 @@ class Sudoku {
         }
         return result
     }
+
+    data class Region(val minX: Int, val minY: Int)
 }
