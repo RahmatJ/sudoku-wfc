@@ -21,13 +21,15 @@ fun main(args: Array<String>) {
 
         println(cell)
 
-        val pickedPossibility = cell.pickRandomElement()
+        Sudoku.addCollapsePending(cell)
 
-        sudoku.collapse(pickedPossibility, x = cell.getX(), y = cell.getY())
+        sudoku.executeCollapse()
 
         println("Count: $count")
         sudoku.printPossibility()
         println("========================")
+
+        readlnOrNull()
 
         if (count >= 100) {
             break

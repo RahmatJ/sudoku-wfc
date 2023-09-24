@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="acd81970-db92-4694-870f-5e30b059e2de" name="Changes" comment="WIP: ignore idea directory">
+    <list default="true" id="acd81970-db92-4694-870f-5e30b059e2de" name="Changes" comment="WIP: add logic to collapse the wave, but still failing">
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/sudoku/Cell.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/sudoku/Cell.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/sudoku/Sudoku.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/sudoku/Sudoku.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +32,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="SET_USER_NAME_GLOBALLY" value="false" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -83,6 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1695460428656</updated>
       <workItem from="1695460429826" duration="5990000" />
+      <workItem from="1695518121335" duration="4219000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1695460936970</created>
@@ -98,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695469711377</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="WIP: add logic to collapse the wave, but still failing">
+      <created>1695478475875</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1695478475875</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,7 +131,8 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="WIP: Implement basic collapse way" />
     <MESSAGE value="WIP: ignore idea directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP: ignore idea directory" />
+    <MESSAGE value="WIP: add logic to collapse the wave, but still failing" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP: add logic to collapse the wave, but still failing" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
